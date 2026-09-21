@@ -45,6 +45,7 @@ export async function forward({ name, rawUrl, method, body, res }) {
     return sendJson(res, 404, { error: { message: 'Not found' } })
   }
   url.searchParams.delete('key') // never let the client smuggle in its own key
+  url.searchParams.delete('...path') // Vercel catch-all adds this; providers reject it
 
   const controller = new AbortController()
   res.on('close', () => controller.abort()) // client hit Stop -> stop the upstream call too
