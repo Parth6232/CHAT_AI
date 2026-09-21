@@ -1,0 +1,90 @@
+/* Registered so the accent colour can animate smoothly when the provider changes. */
+@property --accent {
+  syntax: '<color>';
+  inherits: true;
+  initial-value: #f2542d;
+}
+@property --accent-2 {
+  syntax: '<color>';
+  inherits: true;
+  initial-value: #ffb000;
+}
+
+:root {
+  --font-ui: 'Bricolage Grotesque', system-ui, 'Segoe UI', sans-serif;
+  --font-read: 'Source Serif 4', Georgia, 'Noto Serif Devanagari', serif;
+  --font-code: ui-monospace, 'SFMono-Regular', Menlo, Consolas, monospace;
+
+  color-scheme: light;
+  --bg: #edf0f8;
+  --surface: #ffffff;
+  --surface-2: #f4f6fc;
+  --ink: #141b34;
+  --muted: #5b6486;
+  --line: #d9deee;
+  --user-bg: #141b34;
+  --user-ink: #f4f6ff;
+  --shadow: 0 1px 2px rgba(20, 27, 52, 0.06), 0 14px 34px -14px rgba(20, 27, 52, 0.22);
+}
+
+:root[data-theme='dark'] {
+  color-scheme: dark;
+  --bg: #0e1125;
+  --surface: #161a35;
+  --surface-2: #1d2244;
+  --ink: #e9ecfb;
+  --muted: #9aa2c8;
+  --line: #282e57;
+  --user-bg: #2b3266;
+  --user-ink: #f4f6ff;
+  --shadow: 0 1px 2px rgba(0, 0, 0, 0.3), 0 18px 40px -16px rgba(0, 0, 0, 0.65);
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html,
+body,
+#root {
+  height: 100%;
+}
+
+body {
+  margin: 0;
+  font-family: var(--font-ui);
+  background: var(--bg);
+  color: var(--ink);
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+button,
+input,
+select,
+textarea {
+  font: inherit;
+  color: inherit;
+}
+
+button {
+  cursor: pointer;
+}
+
+:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+    scroll-behavior: auto !important;
+  }
+}
