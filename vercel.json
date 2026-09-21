@@ -3,7 +3,7 @@
     "api/**/*.js": { "maxDuration": 60 }
   },
   "rewrites": [
-    { "source": "/api/groq/(.*)", "destination": "/api/groq" },
-    { "source": "/api/gemini/(.*)", "destination": "/api/gemini" }
+    { "source": "/api/groq/:path*", "destination": "/api/groq?__path=:path*" },
+    { "source": "/api/gemini/:path*", "destination": "/api/gemini?__path=:path*" }
   ]
 }

@@ -22,9 +22,21 @@ export function makeHandler(name) {
     }
     if (hits.size > 5000) for (const [k, v] of hits) if (v.reset < now) hits.delete(k)
 
+    // vercel.json rewrites /api/<name>/<path> to /api/<name>?__path=<path>.
+    // (Fallback: the original URL, e.g. behind another proxy.)
+    const incoming = new URL(req.url || '/', 'http://local')
+    const routed = incoming.searchParams.get('__path')
+    let rawUrl
+    if (routed !== null) {
+      incoming.searchParams.delete('__path')
+      rawUrl = '/' + routed.replace(/^\/+/, '') + incoming.search
+    } else {
+      rawUrl = incoming.pathname.replace(prefix, '') + incoming.search
+    }
+
     await forward({
       name,
-      rawUrl: (req.url || '').replace(prefix, ''),
+      rawUrl,
       method: req.method,
       body: req.body,
       res,
