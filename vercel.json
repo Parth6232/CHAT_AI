@@ -1,5 +1,9 @@
 {
   "functions": {
     "api/**/*.js": { "maxDuration": 60 }
-  }
+  },
+  "rewrites": [
+    { "source": "/api/groq/(.*)", "destination": "/api/groq" },
+    { "source": "/api/gemini/(.*)", "destination": "/api/gemini" }
+  ]
 }
