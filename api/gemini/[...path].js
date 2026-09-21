@@ -1,3 +1,3 @@
-import { makeHandler } from '../_lib/handler.js'
+import { makeHandler } from './_lib/handler.js'
 
 export default makeHandler('gemini')
